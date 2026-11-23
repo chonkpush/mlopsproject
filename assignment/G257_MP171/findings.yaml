@@ -1,0 +1,35 @@
+data_issues:
+  leaking_column:
+    present: false
+    column: null
+
+  unit_mixup:
+    present: true
+    column: "age_years"
+    group_value: "North"
+    factor: 12
+
+  sentinel_value:
+    present: true
+    column: "owners"
+    value: -999
+    count: 63
+
+  duplicate_rows:
+    present: true
+    count: 58
+
+  stuck_sensor:
+    present: true
+    column: "engine_cc"
+    start_date: "2026-02-09"
+    end_date: "2026-02-25"
+
+  target_typos:
+    present: true
+    count: 8
+
+  spelling_variants:
+    present: false
+    column: null
+    true_levels: null
