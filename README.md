@@ -12,7 +12,7 @@
 | Service Lead | Sarthak Jain | S24CSEU0403 |
 | Ops Lead | Member 4 | S24CSEU |
 
-## Structure & Usage
+## Usage
 
 ```bash
 python -m pip install -r requirements.txt
