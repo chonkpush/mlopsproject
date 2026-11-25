@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.zip
+.pytest_cache/
+mlruns/
+mlartifacts/
+data/processed/
+data/train.csv
+data/later.csv
+data/holdout_features.csv
+.dvc/cache/
+.dvc/tmp/

@@ -1,0 +1,67 @@
+project:
+  group_id: G257
+  problem_id: MP171
+
+paths:
+  raw_train: data/raw/train.csv
+  raw_later: data/raw/later.csv
+  holdout_features: data/raw/holdout_features.csv
+  cleaned_train: data/processed/train_clean.csv
+  model_path: models/model.joblib
+  predictions_path: predictions/holdout_predictions.csv
+
+cleaning:
+  unit_mixup_column: age_years
+  unit_mixup_zone: North
+  unit_mixup_factor: 12.0
+  sentinel_column: owners
+  sentinel_value: -999
+  stuck_sensor_column: engine_cc
+  stuck_sensor_start: "2026-02-09"
+  stuck_sensor_end: "2026-02-25"
+  target_typo_threshold: 300.0
+  target_typo_divisor: 10.0
+
+mlflow:
+  tracking_uri: sqlite:///mlflow.db
+  experiment_name: mp171-used-bike-price
+  registered_model_name: mp171-price-model
+
+model:
+  target: resale_thousand_rs
+  numeric_features:
+    - age_years
+    - km_driven
+    - engine_cc
+    - owners
+    - service_records
+    - accidents
+  categorical_features:
+    - brand_tier
+    - city_zone
+  random_state: 42
+  val_size: 0.2
+  candidates:
+    - name: ridge_linear
+      estimator: ridge
+      alpha: 1.0
+    - name: linear_poly2
+      estimator: poly_ridge
+      degree: 2
+      alpha: 10.0
+    - name: huber_linear
+      estimator: huber
+      alpha: 0.001
+    - name: random_forest
+      estimator: random_forest
+      n_estimators: 200
+      max_depth: 12
+    - name: hist_gbr
+      estimator: hist_gbr
+      max_iter: 200
+      max_depth: 6
+
+monitoring:
+  psi_bins: 10
+  retrain_later_fraction: 0.7
+  promotion_min_improvement: 0.05
