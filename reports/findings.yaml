@@ -1,0 +1,62 @@
+# MP171 findings --- fill in every value, keep every key.
+# The marking tool reads this file. Write null only where the comment says so.
+# Use the exact column names and group values from your data files.
+
+group_id: "G257"          # your group id, e.g. "G042"
+problem_id: "MP171"
+
+data_issues:
+  # For each of the 7 kinds: present: true or false.
+  # If present is false, leave the other values as null.
+  leaking_column:
+    present: false
+    column: null           # the column that must not be used as a feature
+  unit_mixup:
+    present: true
+    column: "age_years"    # the column recorded in a different unit
+    group_value: "North"   # the value of city_zone whose rows are affected
+    factor: 12             # wrong value = right value x factor
+  sentinel_value:
+    present: true
+    column: "owners"
+    value: -999            # the special number typed instead of a blank
+    count: 63              # how many rows have it
+  duplicate_rows:
+    present: true
+    count: 58              # number of EXTRA copies (rows you would delete)
+  stuck_sensor:
+    present: true
+    column: "engine_cc"
+    start_date: "2026-02-09" # first date with the stuck value, YYYY-MM-DD
+    end_date: "2026-02-25"   # last date with the stuck value, YYYY-MM-DD
+  target_typos:
+    present: true
+    count: 8               # rows whose target was typed 10 times too big
+  spelling_variants:
+    present: false
+    column: null
+    true_levels: null      # how many real categories there are after cleaning
+
+tracking:
+  experiment_name: "mp171-used-bike-price"
+  best_run_id: "f28523d7ca7e4c8db5dcf292a544205d"        # the MLflow run id of your v1 model
+  registered_model_name: "mp171-price-model"
+  champion_version: 4
+
+monitoring:
+  psi:                     # cleaned train.csv vs later.csv, 10 bins
+    age_years: 0.0549
+    km_driven: 6.614
+    engine_cc: 0.1423
+    owners: 0.0073
+    service_records: 0.0472
+    accidents: 0.0038
+  most_drifted_feature: "km_driven"
+  mae_by_group:            # v1 on later.csv, per value of city_zone
+    'North': 3.1534
+    'South': 13.9547
+    'Central': 4.3379
+  worst_served_group: "South"
+  mae_v1_on_check: 6.9291    # v1 on the last 30% of later.csv (by date)
+  mae_v2_on_check: 6.298     # v2 on the same rows
+  decision: "promote"        # promote or keep
