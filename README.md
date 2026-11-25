@@ -15,8 +15,8 @@
 ## Structure & Usage
 
 ```bash
-python -m install -r requirements.txt
-python -m mp171.run_all
+python -m pip install -r requirements.txt
+python -m src.mp171.run_all
 pytest -v
-uvicorn app.main:app --host 0.0.0.0 --port 8000
+uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
