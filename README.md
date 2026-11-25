@@ -9,7 +9,7 @@
 |---|---|---|
 | Data Lead | Tanmay Kaul | S24CSEU0357 |
 | Model Lead | Member 2 | S24CSEU |
-| Service Lead | Member 3 | S24CSEU |
+| Service Lead | Sarthak Jain | S24CSEU0403 |
 | Ops Lead | Member 4 | S24CSEU |
 
 ## Structure & Usage
