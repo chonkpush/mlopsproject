@@ -10,7 +10,7 @@
 | Data Lead | Tanmay Kaul | S24CSEU0357 |
 | Model Lead | Sameer Anand | S24CSEU0389 |
 | Service Lead | Sarthak Jain | S24CSEU0403 |
-| Ops Lead | Member 4 | S24CSEU |
+| Ops Lead | saransh.  | S24CSEU1768 |
 
 ## Usage
 
